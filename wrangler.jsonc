@@ -1,0 +1,23 @@
+{
+  // Fire Angel: manual web, creador de personajes y plataforma de juego online
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "fire-angel",
+  "main": "src/worker.js",
+  "compatibility_date": "2026-11-12",
+  "workers_dev": true,
+  "preview_urls": false,
+  "assets": {
+    "directory": "./public",
+    "binding": "ASSETS",
+    "not_found_handling": "none",
+    "run_worker_first": ["/api/*", "/sala/*"]
+  },
+  "d1_databases": [
+    { "binding": "DB", "database_name": "fire-angel", "database_id": "37b9976c-3cb4-431f-9f22-bd43da2b9801", "migrations_dir": "migrations" }
+  ],
+  "durable_objects": {
+    "bindings": [{ "name": "SALA", "class_name": "Sala" }]
+  },
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["Sala"] }],
+  "observability": { "enabled": true }
+}
